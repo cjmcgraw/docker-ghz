@@ -2,12 +2,28 @@
 
 This repository exists to create a docker image. The image is located at
 [qarlm/ghz](https://hub.docker.com/repository/docker/qarlm/ghz). This image is used to
-easily run ghz without dependencies or requirements as long as you have docker
+easily run [ghz](https://github.com/bojand/ghz) without dependencies or requirements as long as you have docker
 installed.
+
 
 ## Usage:
 
-To run a standard ghz command. Simply docker run this container:
+It is highly recommended that you use volume mounts, to mount your proto files into the
+container before executing your call. This will allow you to call your service with
+minimal configuration:
+
+```
+docker run \
+    --volume "$(pwd)/protos:/app/protos \
+    qarlm/ghz
+    --proto=/app/protos/my_service.proto
+    --call=package.Service.Method
+```
+
+This will start the ghz siege.
+
+
+You can easily show help as follows:
 ```
 $ docker run qarlm/ghz --help
 usage: ghz [<flags>] [<host>]
