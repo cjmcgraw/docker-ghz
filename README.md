@@ -14,7 +14,7 @@ minimal configuration:
 
 ```
 docker run \
-    --volume "$(pwd)/protos:/app/protos \
+    --volume "$(pwd)/protos:/app/protos" \
     qarlm/ghz
     --proto=/app/protos/my_service.proto
     --call=package.Service.Method
